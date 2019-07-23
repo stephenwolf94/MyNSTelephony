@@ -27,5 +27,6 @@ public class SkypeOnlineHelper
         //var response = await client.GetAsync("users/contact@neoswit.fr");
         var response = await client.GetAsync("?upn=" + upn);
         this.responseData = await response.Content.ReadAsStringAsync();
+        return this.responseData;
     }
 }
