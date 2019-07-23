@@ -25,8 +25,9 @@ public class SkypeOnlineHelper
         //client.DefaultRequestHeaders.Authorization
         //             = new AuthenticationHeaderValue("Bearer", token);
         //var response = await client.GetAsync("users/contact@neoswit.fr");
-        var response = await client.GetAsync("?upn=" + upn);
-        this.responseData = await response.Content.ReadAsStringAsync();
+        //var response = await client.GetAsync("?upn=" + upn);
+        //this.responseData = await response.Content.ReadAsStringAsync();
         //return this.responseData;
+        this.responseData = "plop";
     }
 }
