@@ -22,9 +22,9 @@ namespace Microsoft.BotBuilderSamples.Bots
             string myanswer = $"For user {upn}, here are the telephony details : ";
             System.Diagnostics.Trace.WriteLine(myanswer);
             skypeonlinehelper.getUserInfo(upn);
+            Thread.Sleep(20000);
             myanswer += skypeonlinehelper.responseData;
             System.Diagnostics.Trace.WriteLine(myanswer);
-            Thread.Sleep(20000);
             await turnContext.SendActivityAsync(MessageFactory.Text(myanswer), cancellationToken);
         }
 
