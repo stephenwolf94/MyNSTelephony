@@ -14,7 +14,11 @@ namespace Microsoft.BotBuilderSamples.Bots
         private SkypeOnlineHelper skypeonlinehelper;
         protected override async Task OnMessageActivityAsync(ITurnContext<IMessageActivity> turnContext, CancellationToken cancellationToken)
         {
-            await turnContext.SendActivityAsync(MessageFactory.Text($"Echo: {turnContext.Activity.Text}"), cancellationToken);
+            string upn = turnContext.Activity.Text;
+            string myanswer = $"For user{upn}, here are the telephony details : ";
+            await skypeonlinehelper.getUserInfo();
+            myanswer += skypeonlinehelper.responseData;
+            await turnContext.SendActivityAsync(MessageFactory.Text(myanswer), cancellationToken);
         }
 
         protected override async Task OnMembersAddedAsync(IList<ChannelAccount> membersAdded, ITurnContext<IConversationUpdateActivity> turnContext, CancellationToken cancellationToken)
