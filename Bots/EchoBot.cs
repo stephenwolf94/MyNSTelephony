@@ -19,7 +19,7 @@ namespace Microsoft.BotBuilderSamples.Bots
             skypeonlinehelper = new SkypeOnlineHelper();
             string upn = turnContext.Activity.Text;
             System.Diagnostics.Trace.WriteLine(upn);
-            string myanswer = $"For user{upn}, here are the telephony details : ";
+            string myanswer = $"For user {upn}, here are the telephony details : ";
             System.Diagnostics.Trace.WriteLine(myanswer);
             skypeonlinehelper.getUserInfo(upn);
             myanswer += skypeonlinehelper.responseData;
