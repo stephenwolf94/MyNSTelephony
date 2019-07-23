@@ -18,9 +18,9 @@ namespace Microsoft.BotBuilderSamples.Bots
             System.Diagnostics.Trace.WriteLine(upn);
             string myanswer = $"For user{upn}, here are the telephony details : ";
             System.Diagnostics.Trace.WriteLine(myanswer);
-            //skypeonlinehelper.getUserInfo(upn);
-            //myanswer += skypeonlinehelper.responseData;
-            //System.Diagnostics.Trace.WriteLine(myanswer);
+            skypeonlinehelper.getUserInfo(upn);
+            myanswer += skypeonlinehelper.responseData;
+            System.Diagnostics.Trace.WriteLine(myanswer);
             await turnContext.SendActivityAsync(MessageFactory.Text(myanswer), cancellationToken);
         }
 
