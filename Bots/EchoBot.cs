@@ -11,6 +11,7 @@ namespace Microsoft.BotBuilderSamples.Bots
 {
     public class EchoBot : ActivityHandler
     {
+
         private SkypeOnlineHelper skypeonlinehelper;
         protected override async Task OnMessageActivityAsync(ITurnContext<IMessageActivity> turnContext, CancellationToken cancellationToken)
         {
@@ -18,8 +19,8 @@ namespace Microsoft.BotBuilderSamples.Bots
             System.Diagnostics.Trace.WriteLine(upn);
             string myanswer = $"For user{upn}, here are the telephony details : ";
             System.Diagnostics.Trace.WriteLine(myanswer);
-            //skypeonlinehelper.getUserInfo(upn);
-            //myanswer += skypeonlinehelper.responseData;
+            skypeonlinehelper.getUserInfo(upn);
+            myanswer += skypeonlinehelper.responseData;
             System.Diagnostics.Trace.WriteLine(myanswer);
             await turnContext.SendActivityAsync(MessageFactory.Text(myanswer), cancellationToken);
         }

@@ -21,7 +21,7 @@ public class SkypeOnlineHelper
     {
         string apiUrl = "https://testneoswitv2v1.azurewebsites.net/api/HttpTriggerPowerShell1";
         client.BaseAddress = new Uri(apiUrl);
-        client.DefaultRequestHeaders.Accept.Clear();
+        //client.DefaultRequestHeaders.Accept.Clear();
         //client.DefaultRequestHeaders.Authorization
         //             = new AuthenticationHeaderValue("Bearer", token);
         //var response = await client.GetAsync("users/contact@neoswit.fr");
