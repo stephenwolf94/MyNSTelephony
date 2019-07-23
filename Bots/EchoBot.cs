@@ -16,7 +16,7 @@ namespace Microsoft.BotBuilderSamples.Bots
         {
             string upn = turnContext.Activity.Text;
             string myanswer = $"For user{upn}, here are the telephony details : ";
-            await skypeonlinehelper.getUserInfo();
+            await skypeonlinehelper.getUserInfo(upn);
             myanswer += skypeonlinehelper.responseData;
             await turnContext.SendActivityAsync(MessageFactory.Text(myanswer), cancellationToken);
         }
