@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.Integration.AspNet.Core;
-using SkypeOnlineHelper;
+using Microsoft.BotBuilderSamples.Helpers;
 
 namespace Microsoft.BotBuilderSamples.Controllers
 {
