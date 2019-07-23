@@ -6,21 +6,21 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Bot.Builder;
 using Microsoft.Bot.Schema;
-
+using SkypeOnlineHelper;
 
 namespace Microsoft.BotBuilderSamples.Bots
 {
     public class EchoBot : ActivityHandler
     {
 
-        private SkypeOnlineHelper skypeonlinehelper;
+        //private SkypeOnlineHelper skypeonlinehelper;
         protected override async Task OnMessageActivityAsync(ITurnContext<IMessageActivity> turnContext, CancellationToken cancellationToken)
         {
             string upn = turnContext.Activity.Text;
             System.Diagnostics.Trace.WriteLine(upn);
             string myanswer = $"For user{upn}, here are the telephony details : ";
             System.Diagnostics.Trace.WriteLine(myanswer);
-            skypeonlinehelper.getUserInfo(upn);
+            Microsoft.BotBuilderSamples.Controllers.BotController.skypeonlinehelper.getUserInfo(upn);
             //myanswer += skypeonlinehelper.responseData;
             //System.Diagnostics.Trace.WriteLine(myanswer);
             await turnContext.SendActivityAsync(MessageFactory.Text(myanswer), cancellationToken);
@@ -32,7 +32,7 @@ namespace Microsoft.BotBuilderSamples.Bots
             {
                 if (member.Id != turnContext.Activity.Recipient.Id)
                 {
-                    skypeonlinehelper = new SkypeOnlineHelper();
+                    //skypeonlinehelper = new SkypeOnlineHelper();
                     await turnContext.SendActivityAsync(MessageFactory.Text($"Hello and welcome!"), cancellationToken);
                 }
             }
