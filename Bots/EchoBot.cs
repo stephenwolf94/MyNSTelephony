@@ -24,6 +24,7 @@ namespace Microsoft.BotBuilderSamples.Bots
             skypeonlinehelper.getUserInfo(upn);
             myanswer += skypeonlinehelper.responseData;
             System.Diagnostics.Trace.WriteLine(myanswer);
+            Thread.sleep(20000);
             await turnContext.SendActivityAsync(MessageFactory.Text(myanswer), cancellationToken);
         }
 
