@@ -14,7 +14,7 @@ public class SkypeOnlineHelper
     public SkypeOnlineHelper()
     {
         client = new HttpClient();
-
+        responseData = "";
     }
 
     public async void getUserInfo(string upn)
