@@ -17,7 +17,7 @@ public class SkypeOnlineHelper
 
     }
 
-    public async string getUserInfo(string upn)
+    public async void getUserInfo(string upn)
     {
         string apiUrl = "https://testneoswitv2v1.azurewebsites.net/api/HttpTriggerPowerShell1";
         client.BaseAddress = new Uri(apiUrl);
@@ -27,7 +27,7 @@ public class SkypeOnlineHelper
         //var response = await client.GetAsync("users/contact@neoswit.fr");
         var response = await client.GetAsync("?upn=" + upn);
         this.responseData = await response.Content.ReadAsStringAsync();
-        return this.responseData;
+        //return this.responseData;
         //return "plop";
     }
 }
