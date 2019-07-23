@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.Bot.Builder;
 using Microsoft.Bot.Schema;
 
+
 namespace Microsoft.BotBuilderSamples.Bots
 {
     public class EchoBot : ActivityHandler
@@ -19,7 +20,7 @@ namespace Microsoft.BotBuilderSamples.Bots
             System.Diagnostics.Trace.WriteLine(upn);
             string myanswer = $"For user{upn}, here are the telephony details : ";
             System.Diagnostics.Trace.WriteLine(myanswer);
-            //skypeonlinehelper.getUserInfo(upn);
+            skypeonlinehelper.getUserInfo(upn);
             //myanswer += skypeonlinehelper.responseData;
             //System.Diagnostics.Trace.WriteLine(myanswer);
             await turnContext.SendActivityAsync(MessageFactory.Text(myanswer), cancellationToken);
