@@ -25,19 +25,20 @@ namespace Microsoft.BotBuilderSamples.Bots
             string currentUser = turnContext.Activity.From.Name;
 
             string myanswer = $"Hello {currentUser}, I am getting telephony details for user {upn}, please wait...";
-            Activity reply = ((Activity)turnContext.Activity).CreateReply(myanswer);
-            var msgToUpdate = await connector.Conversations.ReplyToActivityAsync(reply);
+            await turnContext.SendActivityAsync(MessageFactory.Text(myanswer), cancellationToken);
+            //Activity reply = ((Activity)turnContext.Activity).CreateReply(myanswer);
+            //var msgToUpdate = await connector.Conversations.ReplyToActivityAsync(reply);
 
             //await skypeonlinehelper.getUserInfo(upn);
             HttpClient client = new HttpClient();
-            //string apiUrl = "https://testneoswitv2v1.azurewebsites.net/api/HttpTriggerPowerShell1";
-            //client.BaseAddress = new Uri(apiUrl);
+            string apiUrl = "https://testneoswitv2v1.azurewebsites.net/api/HttpTriggerPowerShell1";
+            client.BaseAddress = new Uri(apiUrl);
             //client.DefaultRequestHeaders.Accept.Clear();
-            //var response = await client.GetAsync("?upn=" + upn);
-            //this.responseData = await response.Content.ReadAsStringAsync();
-            //myanswer = await response.Content.ReadAsStringAsync();
+            var response = await client.GetAsync("?upn=" + upn);
+            this.responseData = await response.Content.ReadAsStringAsync();
+            myanswer = await response.Content.ReadAsStringAsync();
            // Activity updatedReply = ((Activity)turnContext.Activity).CreateReply($"{myanswer}");
-            //await turnContext.SendActivityAsync(MessageFactory.Text(myanswer), cancellationToken);
+            await turnContext.SendActivityAsync(MessageFactory.Text(myanswer), cancellationToken);
             //connector.Conversations.UpdateActivityAsync(reply.Conversation.Id, msgToUpdate.Id, updatedReply);
         }
 
