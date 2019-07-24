@@ -15,7 +15,7 @@ namespace Microsoft.BotBuilderSamples.Bots
 {
     public class EchoBot : ActivityHandler
     {
-
+        private string responseData { get; set; }
         //private SkypeOnlineHelper skypeonlinehelper;
         protected override async Task OnMessageActivityAsync(ITurnContext<IMessageActivity> turnContext, CancellationToken cancellationToken)
         {
