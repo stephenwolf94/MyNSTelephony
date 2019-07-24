@@ -3,6 +3,7 @@
 
 using System;
 using System.Collections.Generic;
+using static System.String;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Net.Http;
@@ -22,14 +23,14 @@ namespace Microsoft.BotBuilderSamples.Bots
             string command = turnContext.Activity.Text;
             string currentUser = turnContext.Activity.From.Name;
 
-            string commandsettings = Regex.Split(command, @"\s+").Where(s => s != string.Empty);
+            string[] commandsettings = Regex.Split(command, @"\s+").Where(s => s != string.Empty);
 
-            if (!IsNullOrEmpty(commandsettings[0]))
+            if (!string.IsNullOrEmpty(commandsettings[0]))
             {
                 switch (commandsettings[0])
                 {
                     case "GetUserInfo":
-                        //string upn = commandsettings[1];
+                        string upn = commandsettings[1];
                         //string userID = turnContext.Activity.From.AadObjectId;
                         string myanswer = $"Hello {currentUser}, I am getting telephony details for user {upn}, please wait...";
                         await turnContext.SendActivityAsync(MessageFactory.Text(myanswer), cancellationToken);
