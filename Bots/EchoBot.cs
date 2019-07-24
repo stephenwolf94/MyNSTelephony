@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -24,7 +25,7 @@ namespace Microsoft.BotBuilderSamples.Bots
             string currentUser = turnContext.Activity.From.Name;
 
             string myanswer = $"Hello {currentUser}, I am getting telephony details for user {upn}, please wait...";
-            Activity reply = turnContext.Activity.CreateReply(myanswer);
+            Activity reply = ((Activity)turnContext.Activity).CreateReply(myanswer);
             var msgToUpdate = await connector.Conversations.ReplyToActivityAsync(reply);
 
             //await skypeonlinehelper.getUserInfo(upn);
@@ -34,7 +35,8 @@ namespace Microsoft.BotBuilderSamples.Bots
             client.DefaultRequestHeaders.Accept.Clear();
             var response = await client.GetAsync("?upn=" + upn);
             //this.responseData = await response.Content.ReadAsStringAsync();
-            string updatedReply = await response.Content.ReadAsStringAsync();
+            myanswer = await response.Content.ReadAsStringAsync();
+            Activity updatedReply = activity.CreateReply($"{myanswer}");
             //await turnContext.SendActivityAsync(MessageFactory.Text(myanswer), cancellationToken);
             connector.Conversations.UpdateActivityAsync(reply.Conversation.Id, msgToUpdate.Id, updatedReply);
         }

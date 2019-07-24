@@ -19,7 +19,7 @@ namespace Microsoft.BotBuilderSamples.Helpers
             responseData = "";
         }
 
-        public void getUserInfo(string upn)
+        public async void getUserInfo(string upn)
         {
             string apiUrl = "https://testneoswitv2v1.azurewebsites.net/api/HttpTriggerPowerShell1";
             client.BaseAddress = new Uri(apiUrl);
