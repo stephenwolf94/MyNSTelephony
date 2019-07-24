@@ -6,6 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Bot.Builder;
 using Microsoft.Bot.Schema;
+using Microsoft.Bot.Connector;
 using Microsoft.BotBuilderSamples.Helpers;
 
 namespace Microsoft.BotBuilderSamples.Bots
