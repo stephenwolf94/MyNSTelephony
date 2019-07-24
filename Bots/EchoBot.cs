@@ -19,13 +19,11 @@ namespace Microsoft.BotBuilderSamples.Bots
             skypeonlinehelper = new SkypeOnlineHelper();
             string upn = turnContext.Activity.Text;
             string currentUser = turnContext.Activity.From.Name;
-            System.Diagnostics.Trace.WriteLine(upn);
+
             string myanswer = $"Hello {currentUser}, here are the telephony details for user {upn} : ";
-            System.Diagnostics.Trace.WriteLine(myanswer);
             skypeonlinehelper.getUserInfo(upn);
             Thread.Sleep(20000);
-            myanswer += skypeonlinehelper.responseData;
-            System.Diagnostics.Trace.WriteLine(myanswer);
+            myanswer += skypeonlinehelper.responseData.Trim();
             await turnContext.SendActivityAsync(MessageFactory.Text(myanswer), cancellationToken);
         }
 
