@@ -16,15 +16,19 @@ namespace Microsoft.BotBuilderSamples.Bots
         private SkypeOnlineHelper skypeonlinehelper;
         protected override async Task OnMessageActivityAsync(ITurnContext<IMessageActivity> turnContext, CancellationToken cancellationToken)
         {
+            ConnectorClient connector = new ConnectorClient(new Uri(turnContext.Activity.ServiceUrl));
             skypeonlinehelper = new SkypeOnlineHelper();
             string upn = turnContext.Activity.Text;
             string currentUser = turnContext.Activity.From.Name;
 
-            string myanswer = $"Hello {currentUser}, here are the telephony details for user {upn} : ";
-            skypeonlinehelper.getUserInfo(upn);
-            Thread.Sleep(20000);
-            myanswer += skypeonlinehelper.responseData.Trim();
-            await turnContext.SendActivityAsync(MessageFactory.Text(myanswer), cancellationToken);
+            string myanswer = $"Hello {currentUser}, I am getting telephony details for user {upn}, please wait...";
+            Activity reply = turnContext.Activity.CreateReply(myanswer);
+            var msgToUpdate = await connector.Conversations.ReplyToActivityAsync(reply);
+            await skypeonlinehelper.getUserInfo(upn);
+            //Thread.Sleep(20000);
+            string updatedReply = skypeonlinehelper.responseData.Trim();
+            //await turnContext.SendActivityAsync(MessageFactory.Text(myanswer), cancellationToken);
+            connector.Conversations.UpdateActivityAsync(reply.Conversation.Id, msgToUpdate.Id, updatedReply);
         }
 
         protected override async Task OnMembersAddedAsync(IList<ChannelAccount> membersAdded, ITurnContext<IConversationUpdateActivity> turnContext, CancellationToken cancellationToken)
