@@ -19,7 +19,7 @@ namespace Microsoft.BotBuilderSamples.Bots
         //private SkypeOnlineHelper skypeonlinehelper;
         protected override async Task OnMessageActivityAsync(ITurnContext<IMessageActivity> turnContext, CancellationToken cancellationToken)
         {
-            ConnectorClient connector = new ConnectorClient(new Uri(turnContext.Activity.ServiceUrl));
+            //ConnectorClient connector = new ConnectorClient(new Uri(turnContext.Activity.ServiceUrl));
             //skypeonlinehelper = new SkypeOnlineHelper();
             string upn = turnContext.Activity.Text;
             string currentUser = turnContext.Activity.From.Name;
