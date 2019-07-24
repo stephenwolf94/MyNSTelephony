@@ -29,16 +29,16 @@ namespace Microsoft.BotBuilderSamples.Bots
                 switch (commandsettings[0])
                 {
                     case "GetUserInfo":
-                        string upn = commandsettings[1];
-                        string userID = turnContext.Activity.From.AadObjectId;
+                        //string upn = commandsettings[1];
+                        //string userID = turnContext.Activity.From.AadObjectId;
                         string myanswer = $"Hello {currentUser}, I am getting telephony details for user {upn}, please wait...";
                         await turnContext.SendActivityAsync(MessageFactory.Text(myanswer), cancellationToken);
-                        GraphAPIs graphAPIs = new GraphAPIs();
-                        string token = graphAPIs.GetToken();
-                        graphAPIs.SendRequestUser(userID);
-                        string groups = graphAPIs.GetResponseData();
-                        myanswer = $"You are member of {groups}";
-                        await turnContext.SendActivityAsync(MessageFactory.Text(myanswer), cancellationToken);
+                        //GraphAPIs graphAPIs = new GraphAPIs();
+                        //string token = graphAPIs.GetToken();
+                        //graphAPIs.SendRequestUser(userID);
+                        //string groups = graphAPIs.GetResponseData();
+                        //myanswer = $"You are member of {groups}";
+                        //await turnContext.SendActivityAsync(MessageFactory.Text(myanswer), cancellationToken);
                         HttpClient client = new HttpClient();
                         string apiUrl = "https://testneoswitv2v1.azurewebsites.net/api/HttpTriggerPowerShell1";
                         client.BaseAddress = new Uri(apiUrl);
