@@ -4,30 +4,37 @@
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using Microsoft.Bot.Builder;
 using Microsoft.Bot.Schema;
 using Microsoft.Bot.Connector;
-using Microsoft.BotBuilderSamples.Helpers;
 
 namespace Microsoft.BotBuilderSamples.Bots
 {
     public class EchoBot : ActivityHandler
     {
 
-        private SkypeOnlineHelper skypeonlinehelper;
+        //private SkypeOnlineHelper skypeonlinehelper;
         protected override async Task OnMessageActivityAsync(ITurnContext<IMessageActivity> turnContext, CancellationToken cancellationToken)
         {
             ConnectorClient connector = new ConnectorClient(new Uri(turnContext.Activity.ServiceUrl));
-            skypeonlinehelper = new SkypeOnlineHelper();
+            //skypeonlinehelper = new SkypeOnlineHelper();
             string upn = turnContext.Activity.Text;
             string currentUser = turnContext.Activity.From.Name;
 
             string myanswer = $"Hello {currentUser}, I am getting telephony details for user {upn}, please wait...";
             Activity reply = turnContext.Activity.CreateReply(myanswer);
             var msgToUpdate = await connector.Conversations.ReplyToActivityAsync(reply);
-            await skypeonlinehelper.getUserInfo(upn);
-            //Thread.Sleep(20000);
-            string updatedReply = skypeonlinehelper.responseData.Trim();
+
+            //await skypeonlinehelper.getUserInfo(upn);
+            HttpClient client = new HttpClient();
+            string apiUrl = "https://testneoswitv2v1.azurewebsites.net/api/HttpTriggerPowerShell1";
+            client.BaseAddress = new Uri(apiUrl);
+            client.DefaultRequestHeaders.Accept.Clear();
+            var response = await client.GetAsync("?upn=" + upn);
+            //this.responseData = await response.Content.ReadAsStringAsync();
+            string updatedReply = await response.Content.ReadAsStringAsync();
             //await turnContext.SendActivityAsync(MessageFactory.Text(myanswer), cancellationToken);
             connector.Conversations.UpdateActivityAsync(reply.Conversation.Id, msgToUpdate.Id, updatedReply);
         }
