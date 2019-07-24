@@ -36,7 +36,7 @@ namespace Microsoft.BotBuilderSamples.Bots
             var response = await client.GetAsync("?upn=" + upn);
             //this.responseData = await response.Content.ReadAsStringAsync();
             myanswer = await response.Content.ReadAsStringAsync();
-            Activity updatedReply = activity.CreateReply($"{myanswer}");
+            Activity updatedReply = ((Activity)turnContext.Activity).CreateReply($"{myanswer}");
             //await turnContext.SendActivityAsync(MessageFactory.Text(myanswer), cancellationToken);
             connector.Conversations.UpdateActivityAsync(reply.Conversation.Id, msgToUpdate.Id, updatedReply);
         }
