@@ -30,15 +30,15 @@ namespace Microsoft.BotBuilderSamples.Bots
 
             //await skypeonlinehelper.getUserInfo(upn);
             HttpClient client = new HttpClient();
-            string apiUrl = "https://testneoswitv2v1.azurewebsites.net/api/HttpTriggerPowerShell1";
-            client.BaseAddress = new Uri(apiUrl);
-            client.DefaultRequestHeaders.Accept.Clear();
-            var response = await client.GetAsync("?upn=" + upn);
+            //string apiUrl = "https://testneoswitv2v1.azurewebsites.net/api/HttpTriggerPowerShell1";
+            //client.BaseAddress = new Uri(apiUrl);
+            //client.DefaultRequestHeaders.Accept.Clear();
+            //var response = await client.GetAsync("?upn=" + upn);
             //this.responseData = await response.Content.ReadAsStringAsync();
-            myanswer = await response.Content.ReadAsStringAsync();
-            Activity updatedReply = ((Activity)turnContext.Activity).CreateReply($"{myanswer}");
+            //myanswer = await response.Content.ReadAsStringAsync();
+           // Activity updatedReply = ((Activity)turnContext.Activity).CreateReply($"{myanswer}");
             //await turnContext.SendActivityAsync(MessageFactory.Text(myanswer), cancellationToken);
-            connector.Conversations.UpdateActivityAsync(reply.Conversation.Id, msgToUpdate.Id, updatedReply);
+            //connector.Conversations.UpdateActivityAsync(reply.Conversation.Id, msgToUpdate.Id, updatedReply);
         }
 
         protected override async Task OnMembersAddedAsync(IList<ChannelAccount> membersAdded, ITurnContext<IConversationUpdateActivity> turnContext, CancellationToken cancellationToken)
