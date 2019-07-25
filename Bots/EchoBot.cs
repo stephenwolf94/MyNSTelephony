@@ -32,7 +32,7 @@ namespace Microsoft.BotBuilderSamples.Bots
                     i++;
                 }
 
-            if (!string.IsNullOrEmpty(commandsettings[0]))
+            /*if (!string.IsNullOrEmpty(commandsettings[0]))
             {
                 switch (commandsettings[0])
                 {
@@ -59,7 +59,7 @@ namespace Microsoft.BotBuilderSamples.Bots
                         await turnContext.SendActivityAsync(MessageFactory.Text($"This command '{commandsettings[0]}' is not recognized"), cancellationToken);
                         break;
                 }
-            }
+            }*/
         }
 
         protected override async Task OnMembersAddedAsync(IList<ChannelAccount> membersAdded, ITurnContext<IConversationUpdateActivity> turnContext, CancellationToken cancellationToken)
