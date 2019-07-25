@@ -3,12 +3,10 @@
 
 using System;
 using System.Collections.Generic;
-//using static System.String;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Text.RegularExpressions;
 using Microsoft.Bot.Builder;
 using Microsoft.Bot.Schema;
 using Microsoft.Bot.Connector;
