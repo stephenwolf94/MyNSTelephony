@@ -23,7 +23,7 @@ namespace Microsoft.BotBuilderSamples.Bots
             string command = turnContext.Activity.Text;
             command = command.Trim();
             string currentUser = turnContext.Activity.From.Name;
-            int i = 0;
+            int i = 1;
             string[] commandsettings = Regex.Split(command, @"\s+");
             foreach (string s in commandsettings)
                 {
