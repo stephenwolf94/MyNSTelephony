@@ -23,8 +23,14 @@ namespace Microsoft.BotBuilderSamples.Bots
             string command = turnContext.Activity.Text;
             command = command.Trim();
             string currentUser = turnContext.Activity.From.Name;
-
+            int i = 0;
             string[] commandsettings = Regex.Split(command, @"\s+");
+            foreach (string s in commandsettings)
+                {
+                    string mytext = $"command {i} {commandsettings[i]}";
+                    await turnContext.SendActivityAsync(MessageFactory.Text(mytext), cancellationToken);
+                    i++;
+                }
 
             if (!string.IsNullOrEmpty(commandsettings[0]))
             {
