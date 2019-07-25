@@ -21,17 +21,19 @@ namespace Microsoft.BotBuilderSamples.Bots
         protected override async Task OnMessageActivityAsync(ITurnContext<IMessageActivity> turnContext, CancellationToken cancellationToken)
         {
             string command = turnContext.Activity.Text;
-            command = command.Trim();
+            //command = command.Trim();
             string currentUser = turnContext.Activity.From.Name;
             int i = 1;
-            string[] commandsettings = Regex.Split(command, @"\s+");
+            /*string[] commandsettings = Regex.Split(command, @"\s+");
             foreach (string s in commandsettings)
                 {
                     string mytext = $"command {i} {commandsettings[i]}";
                     await turnContext.SendActivityAsync(MessageFactory.Text(mytext), cancellationToken);
                     i++;
                 }
-
+            */
+            await turnContext.SendActivityAsync(MessageFactory.Text(command), cancellationToken);
+                    
             /*if (!string.IsNullOrEmpty(commandsettings[0]))
             {
                 switch (commandsettings[0])
